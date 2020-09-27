@@ -20,8 +20,8 @@ class BinaryAddition:
         self.n1 = n1
         self.n2 = n2
     """
-    Time: O(n1 + n2)
-    Space: On2 + n2)
+    Time: O(max(len(n1), len( n2))
+    Space: O(max(len(n1), len( n2))
     >> n1, n2 = "1101", "10101100"
     >> B = BinaryAddition(n1, n2)
     >> B.addBinary()
