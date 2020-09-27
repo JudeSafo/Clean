@@ -28,7 +28,7 @@ class BinaryAddition:
             raise TestFailed("Empty String Entered")
 
         output, stack = [], self._process(n1, n2)
-        for x, y in stack:
+        for x, y in stack[::-1]:
             output.append(self._add(x,y))
         ans = "".join(str(_) for _ in output[::-1])
         """while stack:
