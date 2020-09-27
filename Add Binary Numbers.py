@@ -19,7 +19,14 @@ class BinaryAddition:
     def __init__(self, n1: str = None, n2: str = None):
         self.n1 = n1
         self.n2 = n2
-
+    """
+    Time: O(n1 + n2)
+    Space: On2 + n2)
+    >> n1, n2 = "1101", "10101100"
+    >> B = BinaryAddition(n1, n2)
+    >> B.addBinary()
+    '01010111'
+    """
     def addBinary(self, n1: str = "1101", n2: str = "10101100") -> str:
         if self.n1 and self.n2:
             n1, n2 = self.n1, self.n2
@@ -45,7 +52,7 @@ class BinaryAddition:
             n1,n2 = self.n1, self.n2
 
         # combine raw string inputs return int array in correct order
-        nums_array = sorted([list(n1), list(n2)], key = len, reverse = True)
+        nums_array = sorted([list(n1), list(n2) ], key = len, reverse = True)
         prepend = ['0']*(len(nums_array[0]) - len(nums_array[1]))
         nums_array[1] = prepend + nums_array[1]
         nums_array = [(int(x), int(y)) for x,y in list(zip(*nums_array))]
