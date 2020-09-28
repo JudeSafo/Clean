@@ -39,6 +39,7 @@ class BinaryAddition:
         for x, y in stack[::-1]:
             output.append(self._add(x,y))
         ans = "".join(str(_) for _ in output[::-1])
+	#TODO: correct self._carry method to handle 3 input gates
         """while stack:
             x, y = stack.pop()
             output.append(self._carry(stack, x, y, None)) """
@@ -68,7 +69,7 @@ class BinaryAddition:
             return self._carry(stack, x, y, z)
         return carry
 
-    def _add(self, x: int, y: int, z:int = None) -> str:
+    def _add(self, x: int, y: int, z: int = None) -> str:
         f = lambda x,y: str(int('0b0',2))*(~x&y) + str(int('0b1',2))*(x^y) + str(int('0b1010',2))*(x&y)
         if not z:
             return f(x,y)
