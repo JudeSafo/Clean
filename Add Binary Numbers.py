@@ -67,8 +67,9 @@ class BinaryAddition:
     def _carry(self, stack: List[tuple], x: int, y: int, z: int = None) -> str:
         carry = self._add(x, y, z)
         if len(carry) > 1:
+	    output.append(carry[1])
             x, y = stack.pop()
-            z = int(carry[1])
+            z = int(carry[0])
             return self._carry(stack, x, y, z)
         return carry
 
