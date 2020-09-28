@@ -71,7 +71,9 @@ class BinaryAddition:
 
     def _add(self, x: int, y: int, z: int = None) -> str:
         f = lambda x,y: str(int('0b0',2))*(~x&y) + str(int('0b1',2))*(x^y) + str(int('0b1010',2))*(x&y)
-        if not z:
+	# Unit test
+	assert list(map(f,(0,0,1,1),(0,1,0,1))) == ['0', '1', '1', '10'], "Logic test failed"
+	if not z:
             return f(x,y)
 
 	#TODO: fix logic to handle 3 input gates
