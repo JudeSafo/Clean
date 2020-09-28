@@ -1,13 +1,14 @@
-﻿“””
+﻿"""
 Author: Jude Safo
 Title: Add two binary string numbers (without using built-ins)
 
 **note: the author is aware of the optimal alternatives, this solution however
-is for the sole purpose of carry out a earlier attempt at the problem with the
+is for the sole purpose of carrying out an earlier attempt at the problem with the
 same method.
-“””
+"""
 
 from typing import List
+from functools import reduce
 
 class InvalidString(Exception):
     def __init__(self, m):
@@ -49,13 +50,13 @@ class BinaryAddition:
     # Process the raw binary strings
     def _process(self, n1: str, n2: str) -> List[tuple]:
         if self.n1 and self.n2:
-            n1,n2 = self.n1, self.n2
+            n1, n2 = self.n1, self.n2
 
         # combine raw string inputs return int array in correct order
-        nums_array = sorted([list(n1), list(n2) ], key = len, reverse = True)
+        nums_array = sorted([list(n1), list(n2)], key = len, reverse = True)       #adds an additional O(nlogn) to run time; bottleneck
         prepend = ['0']*(len(nums_array[0]) - len(nums_array[1]))
         nums_array[1] = prepend + nums_array[1]
-        nums_array = [(int(x), int(y)) for x,y in list(zip(*nums_array))]
+        nums_array = [(int(x), int(y)) for x, y in list(zip(*nums_array))]
         return nums_array
 
     #carry: without using %2 operation
@@ -65,15 +66,15 @@ class BinaryAddition:
             x, y = stack.pop()
             z = int(carry[1])
             return self._carry(stack, x, y, z)
-        return temp
+        return carry
 
     def _add(self, x: int, y: int, z:int = None) -> str:
+        f = lambda x,y: str(int('0b0',2))*(~x&y) + str(int('0b1',2))*(x^y) + str(int('0b1010',2))*(x&y)
         if not z:
-            return "0"*(~x&y) + "1"*(x^y) + "01"*(x&y)
+            return f(x,y)
 
-        #TODO: refine logic
-        nums = [str(_) for _ in [x,y,z]]
-        reduce((lambda x, y: "0"*(~x&y) + "1"*(x^y) + "01"*(x&y)), nums)
+	#TODO: fix logic to handle 3 input gates
+        return reduce(f(x,y), [x, y, z])
 
 B = BinaryAddition("1101","10101100")
 print(B.addBinary())
