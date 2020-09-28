@@ -21,6 +21,9 @@ class BinaryAddition:
         self.n1 = n1
         self.n2 = n2
     """
+    This module simply adds two binary number
+    non-negative, integer numbers together. 
+
     Time: O(max(len(n1), len( n2))
     Space: O(max(len(n1), len( n2))
     >> n1, n2 = "1101", "10101100"
@@ -69,6 +72,7 @@ class BinaryAddition:
             return self._carry(stack, x, y, z)
         return carry
 
+    #add two binary numbers return string
     def _add(self, x: int, y: int, z: int = None) -> str:
         f = lambda x,y: str(int('0b0',2))*(~x&y) + str(int('0b1',2))*(x^y) + str(int('0b1010',2))*(x&y)
 	# Unit test
