@@ -36,7 +36,7 @@ class BinaryAddition:
             n1, n2 = self.n1, self.n2
 
         if not any([n1,n1]):
-            raise TestFailed("Empty String Entered")
+            raise InvalidString("Empty String Entered")
 
         output, stack = [], self._process(n1, n2)
         for x, y in stack[::-1]:
